@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Test / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Project runtime data (local CAD files, generated output)
+data/
+output/
+*.jww
+*.jwc
+*.dxf
+*.ifc
+*.glb
+*.gltf
+!examples/**/*.dxf
+!tests/fixtures/**/*.dxf
+
+# Secrets / local config
+.env
+config.local.yaml
+*.local.yaml
+secrets/

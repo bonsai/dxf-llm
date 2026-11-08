@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python DXF Business Plan - JSON Data</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+
+        .section-title {
+            color: #34495e;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 1.2rem;
+        }
+
+        .json-container {
+            background: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.85rem;
+            padding: 1rem;
+            white-space: pre-wrap;
+        }
+
+        .json-container .key {
+            color: #f1c40f;
+        }
+
+        .json-container .string {
+            color: #9b59b6;
+        }
+
+        .json-container .number {
+            color: #e67e22;
+        }
+
+        .json-container .boolean {
+            color: #2ecc71;
+        }
+
+        .json-container .null {
+            color: #95a5a6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .meta {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1rem;
+            }
+            .json-container {
+                font-size: 0.75rem;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python DXF Business Plan</h1>
+        
+        <div class="section">
+            <div class="section-title">Project Overview</div>
+            <p>This project aims to create a comprehensive platform for processing Japanese CAD data (JWW/DXF) using Python, enabling automation, BIM conversion, AI integration, and export to various formats (Roblox, Three.js, etc.).</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Core Engine</h3>
+                    <ul>
+                        <li>dxf2bim: JWW/DXF → IFC/FreeCAD automation</li>
+                        <li>dxf2quantity: Automatic quantity takeoff</li>
+                        <li>dxf2struct: Structural model generation</li>
+                        <li>dxf2game: Roblox/Unity export</li>
+                        <li>dxf-llm: LLM integration</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Target Markets</h3>
+                    <ul>
+                        <li>Small/Medium Architecture Offices</li>
+                        <li>General Contractors & Subcontractors</li>
+                        <li>Structural/MEP Design Offices</li>
+                        <li>Government/Permitting Authorities</li>
+                        <li>Real Estate & Developers</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Revenue Model</h3>
+                    <ul>
+                        <li>SaaS Subscriptions (50%)</li>
+                        <li>Enterprise Licenses (20%)</li>
+                        <li>Professional Services (20%)</li>
+                        <li>Marketplace Fees (5%)</li>
+                        <li>Training/Certification (5%)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Core Technical Specifications</div>
+            
+            <h2>Data Transformation Pipeline</h2>
+            <div class="json-container">
+{
+  "pipeline": "JWW → DXF → JSON → Target Format",
+  "steps": [
+    {
+      "name": "JWW Parsing",
+      "tool": "JWW2DXFConv.dll + ezdxf",
+      "input": "C:\\\\jww\\\\*.jww",
+      "output": "DXF entity data",
+      "notes": "Handles CP932 encoding, layer/color/linetype rules"
+    },
+    {
+      "name": "Geometric Normalization",
+      "tool": "build123d / CadQuery / shapely",
+      "input": "DXF line data",
+      "output": "Topology-clean wireframe/solid",
+      "notes": "Duplicate removal, closure checking, offset handling"
+    },
+    {
+      "name": "Semantic Enrichment",
+      "tool": "Rule-based + Lightweight CNN/Transformer",
+      "input": "Clean geometry",
+      "output": "IFC class mapping (Wall, Column, Window, Door etc.)",
+      "notes": "Layer/color/linetype → ontology mapping"
+    },
+    {
+      "name": "Multi-Format Export",
+      "tool": "trimesh / pygltflib / IfcOpenShell",
+      "input": "Enriched geometry",
+      "output": ["IFC", "glTF", "Three.js", "OBJ", "Roblox", "CSV", "JSON"],
+      "notes": "Single source → all formats simultaneously"
+    }
+  ],
+  "supported_formats": ["IFC", "glTF", "OBJ", "DXF", "JSON", "CSV", "Three.js", "Roblox"],
+  "cad_systems": ["Jw_cad", "AutoCAD", "FreeCAD", "BricsCAD"],
+  "programming_languages": ["Python", "Luau (Roblox)", "JavaScript (Three.js)"],
+  "key_dependencies": ["ezdxf", "build123d", "trimesh", "pygltflib", "IfcOpenShell", "shapely", "numpy", "pandas"]
+}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Phase 1: Technical Validation (0-3 months)</div>
+            <ol>
+                <li>Publish core engine as OSS (MIT license) on GitHub</li>
+                <li>Create demo video: "Wood frame floor plan.jww → IFC → BlenderBIM → Quantity takeoff"</li>
+                <li>Write technical blog series: "Liberating Japanese architectural drawings with Python"</li>
+                <li>Start community: "PyDXF Japan" Discord/Slack</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Phase 2: Early Customer Acquisition (3-9 months)</div>
+            <ol>
+                <li>"Free CAD Diagnosis Campaign": Accept 10 firms' JWW/DXF files, convert to IPC/quantity reports, convert 30% to paid</li>
+                <li>PoC with 3 general contractors: "Construction drawing automatic check" - prove 80% workhour reduction</li>
+                <li>Co-develop with 2 structural offices: "Architectural drawing → structural model" - 50% reduction in input time</li>
+                <li>Recruit Python/CAD domain engineers (5+ via freelance/part-time)</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Phase 3: SaaS & Scale (9-18 months)</div>
+            <ol>
+                <li>Release β version of "PlanCheck AI" (10 code violation items)</li>
+                <li>Build partner channel: CAD vendors, BIM consultants, structural software vendors</li>
+                <li>Utilize subsidies: "IT Introduction Subsidy", "Manufacturing Subsidy", "Construction DX Subsidy"</li>
+                <li>Hire 3-5 engineers specialized in Python/geometry/CAD domain</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Financial Projections (3-year summary)</div>
+            <div class="json-container">
+{
+  "3_year_projection": {
+    "year_1": {
+      "revenue": "¥30,000,000",
+      "operating_profit": "¥-10,000,000",
+      "team_size": "3-4 members (including freelance)",
+      "milestones": "OSS publication, PoC with 5 companies, initial contracts"
+    },
+    "year_2": {
+      "revenue": "¥120,000,000",
+      "operating_profit": "¥20,000,000",
+      "team_size": "8-10 members",
+      "milestones": "SaaS β release, 3 partner companies, subsidy acquisition"
+    },
+    "year_3": {
+      "revenue": "¥350,000,000",
+      "operating_profit": "¥100,000,000",
+      "team_size": "15-20 members",
+      "milestones": "SaaS general version, overseas expansion, Series A consideration"
+    }
+  },
+  "revenue_breakdown": {
+    "saas_subscriptions": "50%",
+    "enterprise_licenses": "20%",
+    "professional_services": "20%",
+    "marketplace_fees": "5%",
+    "training_certification": "5%"
+  }
+}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Key Differentiators (Moat)</div>
+            <ul>
+                <li><strong>JWW Mastery:</strong> Complete JWW→DXF→Structured pipeline - the only solution in Japan handling legacy CAD completely automatically</li>
+                <li><strong>Geometric Integrity:</strong> Line-level topology repair, closure checking, duplicate removal using shapely/pyclipper</li>
+                <li><strong>Semantic Enrichment:</strong> Automatic classification of lines to "Wall/Column/Window" using layer/color/linetype + lightweight ML</li>
+                <li><strong>Multi-Format Output:</strong> Same source → IFC/gltf/Three.js/Roblox/CSV/JSON all at once</li>
+                <li><strong>LLM-Native Design:</strong> Fixed-geometry RAG + Function Calling for agent-based "search/modify/generate" from natural language</li>
+                <li><strong>Local-First/Offline:</strong> Works fully on-premise (necessary for government/large contractor internal networks)</li>
+            </ul>
+        </div>
+
+        <footer style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e0e0e0; text-align: center; color: #7f8c8d; font-size: 0.85rem;">
+            <p>Python DXF Business Plan • Focus: Japanese CAD (JWW/DXF) → Modern Data Stack Automation • OSS first, Enterprise later</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple JSON formatter enhancement
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add copy buttons for code blocks
+            const codeBlocks = document.querySelectorAll('.json-container');
+            codeBlocks.forEach((block, index) => {
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'btn';
+                copyBtn.textContent = 'Copy';
+                copyBtn.style.marginBottom = '1rem';
+                copyBtn.style.float = 'right';
+                copyBtn.onclick = () => {
+                    navigator.clipboard.writeText(block.textContent);
+                    alert('Copied to clipboard!');
+                };
+                block.parentNode.insertBefore(copyBtn, block);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dxf-llm"
+version = "0.1.0"
+description = "DXF ⇔ 自然言語 双方向変換エージェント - JWW/DXF/IFC 図面データを LLM 活用して操作・検索・生成可能にする"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "PyDXF Japan", email = "pydxf-japan@example.com"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: CAD",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "ezdxf>=1.1.0",
+    "langchain>=0.1.0",
+    "langgraph>=0.0.40",
+    "qdrant-client>=1.7.0",
+    "openai>=1.10.0",
+    "sentence-transformers>=2.2.0",
+    "fastapi>=0.108.0",
+    "uvicorn>=0.27.0",
+    "pydantic>=2.5.0",
+    "numpy>=1.24.0",
+    "pandas>=2.1.0",
+    "shapely>=2.0.0",
+    "pyclipper>=1.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.2.0",
+    "mypy>=1.8.0",
+    "black>=23.12.0",
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.12.0",
+]
+viz = [
+    "pyvista>=0.43.0",
+    "matplotlib>=3.8.0",
+]
+ml = [
+    "torch>=2.1.0",
+    "transformers>=4.35.0",
+]
+full = [
+    "build123d>=2.0",
+    "trimesh>=4.0",
+    "pygltflib>=1.15",
+    "IfcOpenShell>=0.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/pydxf-japan/dxf-llm"
+Repository = "https://github.com/pydxf-japan/dxf-llm"
+Issues = "https://github.com/pydxf-japan/dxf-llm/issues"
+Documentation = "https://github.com/pydxf-japan/dxf-llm/tree/main/docs"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["dxf_llm*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "I", "UP", "W", "C90", "ANN", "T20"]
+ignore = ["ANN101", "ANN102", "T201"]
+fixable = ["E", "F", "I", "UP", "W", "C90", "T20"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+strict_optional = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --cov=dxf_llm --cov-report=term-missing"
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]

@@ -1,0 +1,75 @@
+# recipes.yaml — Table of Contents / Recipes Registry
+
+# Top-level key 'recipes' holds individual recipe definitions.
+# Each entry has:
+#   id      : unique identifier (slug)
+#   title   : short title
+#   description: brief what does this do
+#   category: high-level area (e.g., quantity_takeoff, bim_conversion, llm_integration)
+#   status  : draft | ready | shipped
+#   created : YYYY-MM-DD
+#   author  : contributor name
+
+recipes:
+  - id: extract-wall-length
+    title: "DXF から壁芯総長を抽出"
+    description: "DXFファイルから『wall』レイヤーの LINE エンティティを検索し、座標から線形距離を合計して返すスクリプト。"
+    category: quantity_takeoff
+    status: draft
+    created: "2025-11-08"
+    author: "PyDXF Japan"
+
+  - id: dxf2bim-converter
+    title: "JWW/DXF → IFC / FreeCAD / BlenderBIM パイプライン"
+    description: "JWW/DXF ファイルを読み取り、FreeCAD Arch/WB で IFC を生成する Python スクリプト。レイヤー・色・文字コード(CP932)も保持。"
+    category: bim_conversion
+    status: draft
+    created: "2025-11-08"
+    author: "PyDXF Japan"
+
+  - id: search-dxf-query
+    title: "Natural Language Query on DXF (FastAPI / LLM)"
+    description: "POST /search で自然言語クエリ（例: 'この図面の壁は？'）を実行し、JSON で結果を返す。Qdrant ベクトルDB + OpenAI Embeddings 利用。"
+    category: llm_integration
+    status: draft
+    created: "2025-11-08"
+    author: "PyDXF Japan"
+
+  - id: quantity-cloud
+    title: "Quantity Cloud (数量拾い自動化)"
+    description: "DXF/JWW ドラッグ&ドロップで壁・床・開口・鉄筋などを自動的に数量表・積算シートへ変換。pandas + pyvista 連携。"
+    category: quantity_takeoff
+    status: draft
+    created: "2025-11-08"
+    author: "PyDXF Japan"
+
+  - id: struct-bridge
+    title: "Structural Bridge (建築図面 → 構造モデル)"
+    description: "平面図・立面図・側面図から節点・部材・荷重を生成し、SS3/SNAP/CSV 出力。CadQuery/build123d 統合。"
+    category: structural_analysis
+    status: draft
+    created: "2025-11-08"
+    author: "PyDXF Japan"
+
+toc:
+  - number: 1
+    title: "Extract Wall Length"
+    link: "recipes/extract-wall-length.py"
+  - number: 2
+    title: "DXF to BIM Converter"
+    link: "recipes/dxf2bim-converter.py"
+  - number: 3
+    title: "Search DXF via LLM"
+    link: "recipes/search-dxf-query.py"
+  - number: 4
+    title: "Quantity Cloud"
+    link: "recipes/quantity-cloud.py"
+  - number: 5
+    title: "Structural Bridge"
+    link: "recipes/struct-bridge.py"
+  - number: 6
+    title: "LLM Integration Guide"
+    link: "docs/README.md"
+  - number: 7
+    title: "Risk & Mitigation Plan"
+    link: "docs/risk-matrix.md"
