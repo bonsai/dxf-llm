@@ -7,6 +7,7 @@ Bonsai（BlenderBIM）を参考にしたプラグインアーキテクチャ。
 from .base import PluginBase, HookManager
 from .registry import PluginRegistry
 from .dxf_parser import DxfParserPlugin
+from .semantic_enricher import SemanticEnricherPlugin
 from .luau_exporter import LuauExporterPlugin
 
 __all__ = [
@@ -14,5 +15,6 @@ __all__ = [
     "HookManager",
     "PluginRegistry",
     "DxfParserPlugin",
+    "SemanticEnricherPlugin",
     "LuauExporterPlugin",
 ]

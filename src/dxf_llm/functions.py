@@ -6,7 +6,12 @@ DXFドキュメントをLLMに渡し、自然言語で操作・質問できる�
 from typing import List, Dict, Any, Optional
 
 from .parser import DxfDocument, DxfEntity
-from .query_engine import search_dxf, analyze_dxf_document, extract_geometry_from_text
+from .query_engine import (
+    DxfSearchResult,
+    search_dxf,
+    analyze_dxf_document,
+    extract_geometry_from_text,
+)
 
 
 class DxfLLMTool:

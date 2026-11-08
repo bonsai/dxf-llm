@@ -45,6 +45,7 @@ Thumbs.db
 # Project runtime data (local CAD files, generated output)
 data/
 output/
+out/
 *.jww
 *.jwc
 *.dxf

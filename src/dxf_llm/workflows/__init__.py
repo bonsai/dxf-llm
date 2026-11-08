@@ -89,15 +89,21 @@ class Step:
             return False
 
     def _prepare_input(self, context: Dict[str, Any]) -> Any:
-        """依存ステップの出力を収集してプラグイン入力 data とする。
-        単一依存ならその output、複数なら dict で渡す。"""
+        """入力データを決定する。
+
+        - 依存なし（ルートステップ）: 初期コンテキスト全体を渡す
+        - 依存1つ: そのステップの出力
+        - 依存複数: ``{step_id: output}`` の辞書
+        """
+        if not self.config.depends_on:
+            return context
         dep_outputs = {}
         for dep_id in self.config.depends_on:
             if dep_id in context:
                 dep_outputs[dep_id] = context[dep_id]
         if len(dep_outputs) == 1:
             return next(iter(dep_outputs.values()))
-        return dep_outputs if dep_outputs else None
+        return dep_outputs
 
     def execute(self, context: Dict[str, Any]) -> StepResult:
         """ステップ実行。リトライ・タイムアウト・フック込み。"""

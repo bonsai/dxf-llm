@@ -4,6 +4,7 @@ LangChainスタイルのFunction CallingとRAGを活用して、図面データ�
 """
 
 import json
+import re
 from typing import List, Dict, Any, Callable
 from dataclasses import dataclass
 

@@ -6,6 +6,9 @@ JWW から書き出した DXF を読み取り、壁・柱・窓などを Roblox 
 組み立てる Luau スクリプト（`ModuleScript`）を生成します。
 生成物を Roblox Studio に貼り付けると、図面に沿ってパーツが自動生成されます。
 
+**添景（人物・植栽・車）も厚み付きブロックで再現**します（→ [entourage.md](entourage.md)）。
+「うそっぽくていい」方針で、すべて箱で近似します。
+
 ---
 
 ## パイプライン
@@ -55,9 +58,18 @@ JWW2DXFConv.exe -i "C:/jww/木造平面例.jww" -o "C:/tmp/plan.dxf"
 # 2. DXF → Luau
 python recipes/jww2luau/jww2luau.py "C:/tmp/plan.dxf" -o "./out/Building.luau"
 
-# 3. (任意) 中間 JSON も出す
-python recipes/jww2luau/jww2luau.py "C:/tmp/plan.dxf" -o ./out/Building.luau --emit-json
+# 3. (任意) 中間 JSON / Roblox モデル(.rbxmx) も出す
+python recipes/jww2luau/jww2luau.py "C:/tmp/plan.dxf" -o ./out/Building.luau \
+    --emit-json --rbxmx ./out/Building.rbxmx
 ```
+
+`.rbxmx` は Roblox Studio にドラッグ&ドロップで取り込めるモデル（MCP 不要）。
+
+| 出力 | 用途 |
+|---|---|
+| `*.luau` | `require` して実行（コマンドバー / MCP `run_code`） |
+| `*.rbxmx` | Studio へ直接インポート（MCP `insert_model` でも可） |
+| `*.json` | 中間データ（他ツール連携） |
 
 ---
 
@@ -76,6 +88,13 @@ Building.build(workspace, { wall = true })  -- 壁だけ
 
 ---
 
+## 添景（entourage）・Roblox 描画
+
+- 添景のブロック再現の詳細 → [entourage.md](entourage.md)
+- Roblox Studio MCP 経由の描画手順 → [mcp-studio.md](mcp-studio.md)
+
+---
+
 ## 引数
 
 | 引数 | 説明 | デフォルト |
@@ -83,6 +102,7 @@ Building.build(workspace, { wall = true })  -- 壁だけ
 | `input` | 入力 DXF（位置引数） | 必須 |
 | `-o, --output` | 出力 `.luau` パス | `out/Building.luau` |
 | `--emit-json` | 中間 JSON も出力 | off |
+| `--rbxmx` | Roblox モデル `.rbxmx` を出力 | off |
 | `--studs-per-meter` | スケール | 3.571 |
 | `--base-height-mm` | 生成 Z(=Y) の基準高さ | 0 |
 | `--mapping` | レイヤマッピング YAML | 組み込み |
