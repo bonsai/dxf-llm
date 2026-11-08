@@ -51,6 +51,16 @@ recipes:
     created: "2025-11-08"
     author: "PyDXF Japan"
 
+  - id: jww2luau
+    title: "JWW/DXF → Roblox Luau コンバーター"
+    description: "JWW から書き出した DXF を読み、壁・柱・窓などを Roblox の Part として組み立てる Luau ModuleScript を生成。レイヤ名で部材種別を判定。"
+    category: game_export
+    status: ready
+    created: "2025-11-08"
+    author: "PyDXF Japan"
+    path: "recipes/jww2luau/"
+    plugin: "luau_exporter"
+
 toc:
   - number: 1
     title: "Extract Wall Length"
@@ -68,8 +78,11 @@ toc:
     title: "Structural Bridge"
     link: "recipes/struct-bridge.py"
   - number: 6
+    title: "JWW to Luau (Roblox)"
+    link: "recipes/jww2luau/README.md"
+  - number: 7
     title: "LLM Integration Guide"
     link: "docs/README.md"
-  - number: 7
+  - number: 8
     title: "Risk & Mitigation Plan"
     link: "docs/risk-matrix.md"

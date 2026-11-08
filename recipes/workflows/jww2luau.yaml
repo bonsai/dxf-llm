@@ -1,0 +1,28 @@
+# recipes/workflows/jww2luau.yaml
+# JWW/DXF → Roblox Luau ワークフロー
+#
+# 実行:
+#   python -c "from dxf_llm.plugins.registry import PluginRegistry; ..."
+#   （または CLI から load_workflow_from_yaml を利用）
+name: jww2luau
+
+steps:
+  - id: parse
+    plugin: dxf_parser
+    params:
+      encoding: cp932
+
+  - id: luau
+    plugin: luau_exporter
+    depends_on: [parse]
+    params:
+      output: out/Building.luau
+      studs_per_meter: 3.571
+
+  # 意味付けを挟む場合はこちらを有効化（プラグイン実装後）
+  # - id: enrich
+  #   plugin: semantic_enricher
+  #   depends_on: [parse]
+  # - id: luau
+  #   plugin: luau_exporter
+  #   depends_on: [enrich]
